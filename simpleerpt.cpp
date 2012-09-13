@@ -385,7 +385,7 @@ void render_erpt(const int samples, const int mutation, Color *image, const Ray 
 	
 	// OpenMP
 	omp_lock_t lock0;
-    omp_init_lock(&lock0);
+	omp_init_lock(&lock0);
 #pragma omp parallel for schedule(dynamic, 1)
 	for (int y = 0; y < height; y ++) {	
 		std::vector<Color> tmp_image;
@@ -459,15 +459,15 @@ void render_erpt(const int samples, const int mutation, Color *image, const Ray 
 		}
 
 		// OpenMP
-        omp_set_lock(&lock0);
-        for(int i = 0; i < width * height; i ++) {
+		omp_set_lock(&lock0);
+		for(int i = 0; i < width * height; i ++) {
 			image[i] = image[i] + tmp_image[i];
-        }
-        omp_unset_lock(&lock0);
+		}
+		omp_unset_lock(&lock0);
 	}
 	
 	// OpenMP
-    omp_destroy_lock(&lock0);
+	omp_destroy_lock(&lock0);
 }
 
 // *** .hdrフォーマットで出力するための関数 ***
