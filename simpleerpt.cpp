@@ -209,7 +209,7 @@ Color radiance(const Ray &ray, const int depth, Sampler &sampler) {
 	// 一定以上レイを追跡したらロシアンルーレットを実行し追跡を打ち切るかどうかを判断する
 	if (depth > MaxDepth) {
 		if (sampler.next() >= russian_roulette_probability)
-			return obj.emission;
+			return Color();
 	} else
 		russian_roulette_probability = 1.0; // ロシアンルーレット実行しなかった
 
